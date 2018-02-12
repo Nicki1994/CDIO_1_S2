@@ -1,9 +1,5 @@
-package Data;
-
 package data;
 import java.util.List;
-
-import dto.UserDTO;
 
 public interface IUserDAO {
 
