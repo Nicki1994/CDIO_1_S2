@@ -1,6 +1,6 @@
 package Data;
 
-package dal;
+package data;
 import java.util.List;
 
 import dto.UserDTO;
