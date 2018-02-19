@@ -26,17 +26,29 @@ public class UserDAO implements IUserDAO{
 
     @Override
     public void createUser(UserDTO user) throws DALException {
-        userList.add(user);
+        Iterator iterator = userList.iterator();
+        while (iterator.hasNext()) {
+            if (((UserDTO) iterator.next()).getUserId() == user.getUserId()) {
+                throw new DALException("Fejl: Bruger eksisterer allerede!");
+            }
+        }
+        UserDTO tempUser = new UserDTO();
+        tempUser.setUserId(user.getUserId());
+        tempUser.setIni(user.getIni());
+        tempUser.setRoles(user.getRoles());
+        tempUser.setUserName(user.getUserName());
+        userList.add(tempUser);
     }
 
     @Override
     public void updateUser(UserDTO user) throws DALException {
         Iterator iterator = userList.iterator();
         while (iterator.hasNext()) {
-            if (((UserDTO) iterator.next()).getUserId() == user.getUserId()) {
-                ((UserDTO) iterator).setUserName(user.getUserName());
-                ((UserDTO) iterator).setIni(user.getIni());
-                ((UserDTO) iterator).setRoles(user.getRoles());
+            UserDTO tempUser = (UserDTO) iterator.next();
+            if (tempUser.getUserId() == user.getUserId()) {
+                tempUser.setUserName(user.getUserName());
+                tempUser.setIni(user.getIni());
+                tempUser.setRoles(user.getRoles());
                 return;
             }
         }
