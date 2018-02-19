@@ -34,13 +34,14 @@ public class UserDAO implements IUserDAO{
         Iterator iterator = userList.iterator();
         while (iterator.hasNext()) {
             if (((UserDTO) iterator.next()).getUserId() == user.getUserId()) {
-                break;
+                ((UserDTO) iterator).setUserName(user.getUserName());
+                ((UserDTO) iterator).setIni(user.getIni());
+                ((UserDTO) iterator).setRoles(user.getRoles());
+                return;
             }
         }
-        ((UserDTO) iterator).setUserName(user.getUserName());
-        ((UserDTO) iterator).setIni(user.getIni());
-        ((UserDTO) iterator).setRoles(user.getRoles());
 
+        throw new DALException("Fejl: Bruger ikke fundet!");
     }
 
     @Override
