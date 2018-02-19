@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class TUI implements IUI {
 
+	Scanner sc = new Scanner(System.in);
 	@Override
 	public void clearDisplay() {
 		System.out.flush();
@@ -21,9 +22,11 @@ public class TUI implements IUI {
 	@Override
 	public int getInteger(String msg) {
 		while(true){
-			try(Scanner sc = new Scanner(System.in)){
+			try{
 				System.out.println(msg);
-				return sc.nextInt();
+				int i = sc.nextInt();
+				sc.nextLine();
+				return i;
 			}
 			catch(InputMismatchException e){
 				System.out.println("forkert input");
@@ -38,24 +41,29 @@ public class TUI implements IUI {
 
 	@Override
 	public String getString(String msg) {
+		String temp = "";
 		while(true){
-			try(Scanner sc = new Scanner(System.in)){
+			try{
 				System.out.println(msg);
-				return sc.nextLine();
+				temp = sc.nextLine();
+				return temp;
 			}
-			catch(Exception e){
+		 	catch(Exception e){
 				e.printStackTrace();
-			}
+			}	
 		}
+		
 	}
 
 	@Override
 	public char[] getPassword(String msg) {
+		char[] kode = {'a','b','e'};
 		while(true){
 			try{
-				Console console = System.console();
-				System.out.println(msg);
-				return console.readPassword();
+				//Console console = System.console();
+//				System.out.println(msg);
+				System.out.println("koden er automatisk indtastet");
+				return kode; //console.readPassword();
 			}
 			catch(Exception e){
 				e.printStackTrace();
