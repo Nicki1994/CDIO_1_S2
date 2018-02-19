@@ -12,6 +12,7 @@ import java.util.List;
 
 public class UserDAO implements IUserDAO{
     List<UserDTO> userList;
+    public static int userIDIt = 0;
     
     public UserDAO(){
     	userList = new ArrayList<UserDTO>();

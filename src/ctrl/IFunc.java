@@ -1,4 +1,5 @@
 package ctrl;
 
-public class IFunc {
+public interface IFunc {
+    public void start();
 }
