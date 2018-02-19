@@ -42,6 +42,8 @@ public class UserDAO implements IUserDAO{
         tempUser.setIni(user.getIni());
         tempUser.setRoles(user.getRoles());
         tempUser.setUserName(user.getUserName());
+        tempUser.setCpr(user.getCpr());
+        tempUser.setPassword(user.getPassword());
         userList.add(tempUser);
     }
 
@@ -51,9 +53,11 @@ public class UserDAO implements IUserDAO{
         while (iterator.hasNext()) {
             UserDTO tempUser = (UserDTO) iterator.next();
             if (tempUser.getUserId() == user.getUserId()) {
-                tempUser.setUserName(user.getUserName());
                 tempUser.setIni(user.getIni());
                 tempUser.setRoles(user.getRoles());
+                tempUser.setUserName(user.getUserName());
+                tempUser.setCpr(user.getCpr());
+                tempUser.setPassword(user.getPassword());
                 return;
             }
         }
