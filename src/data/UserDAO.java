@@ -1,10 +1,15 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class UserDAO implements IUserDAO{
     List<UserDTO> userList;
+    
+    public UserDAO(){
+    	userList = new ArrayList<UserDTO>();
+    }
 
     @Override
     public UserDTO getUser(int userId) throws DALException {
