@@ -1,17 +1,18 @@
-package Data;
+package test;
 
 
 import java.util.List;
 
 import data.IUserDAO.DALException;
 import data.IUserDAO;
-//import data.UserDAODiscImpl;
+//import data.UserDAOImpl;
+import data.UserDAOImpl;
 import data.UserDTO;
 
 public class DBTester {
 	//TODO refactor as JUnit test???
 	public static void main(String[] args) {
-		IUserDAO iDAO = new UserDAODiscImpl();
+		IUserDAO iDAO = new UserDAOImpl();
 		UserDTO newUser = new UserDTO();
 		printUsers(iDAO);
 		//TODO test new fields...
