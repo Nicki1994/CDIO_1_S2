@@ -4,11 +4,14 @@ import UI.*;
 import data.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Func implements IFunc{
     IUserDAO data = new UserDAO();
     IUI ui = new TUI();
+    //TODO load users
+
 
     @Override
     public void start() {
@@ -20,14 +23,19 @@ public class Func implements IFunc{
                     createUser();
                     break;
                 case 2:
+                    printAllUsers();
                     break;
                 case 3:
+                    printSpecificUser();
                     break;
                 case 4:
+                    updateSpecificUser();
                     break;
                 case 5:
+                    deleteUser();
                     break;
                 case 6:
+                    exit();
                     break;
                 default:
                     break;
@@ -46,6 +54,12 @@ public class Func implements IFunc{
         tempUser.setCpr(ui.getInteger("Indtast CPR:\n"));
         tempUser.setRoles(getRoles());
         tempUser.setUserId(++UserDAO.userIDIt);
+
+        try {
+            data.createUser(tempUser);
+        } catch(IUserDAO.DALException e){
+            ui.showMessage("Bruger eksisterer allerede!");
+        }
     }
 
     private List<String> getRoles(){
@@ -89,5 +103,61 @@ public class Func implements IFunc{
         }
 
         return tempList;
+    }
+
+    private void printAllUsers(){
+        ui.clearDisplay();
+        try {
+            for (Object o : data.getUserList()) {
+                ui.showMessage(o.toString());
+            }
+        } catch(IUserDAO.DALException e) {
+            ui.showMessage("Der gik noget galt");
+        }
+    }
+
+    private void printSpecificUser() {
+        ui.clearDisplay();
+        try {
+            ui.showMessage(data.getUser(ui.getInteger("Indtast bruger ID\n")).toString());
+        } catch(IUserDAO.DALException e) {
+            ui.showMessage("Forkert bruger ID");
+        }
+    }
+
+    private void updateSpecificUser() {
+        ui.clearDisplay();
+        //TODO
+        try {
+            data.getUser(ui.getInteger("Indtast bruger ID\n"));
+        } catch(IUserDAO.DALException e) {
+            ui.showMessage("Forkert bruger ID");
+        }
+    }
+
+    private void deleteUser() {
+        ui.clearDisplay();
+        try {
+            UserDTO tempuser = data.getUser(ui.getInteger("Indtast bruger ID\n"));
+            String temp = "";
+            while (true) {
+                temp = ui.getString("Vil du slette? (Y/N): " + tempuser.toString() + "\n");
+                if(temp == "Y"){
+                    data.deleteUser(tempuser.getUserId());
+                    break;
+                } else if(temp == "N"){
+                    break;
+                } else {
+                    ui.showMessage("Indtast Y eller N\n");
+                }
+            }
+        } catch(IUserDAO.DALException e) {
+            ui.showMessage("Forkert bruger ID");
+        }
+    }
+
+    private void exit(){
+        //TODO save users
+        System.exit(0);
     }
 }
