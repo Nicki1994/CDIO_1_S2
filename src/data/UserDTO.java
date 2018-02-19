@@ -34,6 +34,11 @@ public class UserDTO implements Serializable{
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+		if (userName.length()>3){
+		String tempIni = (userName.substring(0,2)+userName.substring(userName.length()-2,userName.length())).toUpperCase();
+		setIni(tempIni);
+		}
+		else setIni(userName);
 	}
 	public String getIni() {
 		return ini;
