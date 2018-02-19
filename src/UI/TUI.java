@@ -14,14 +14,12 @@ public class TUI implements IUI {
 
 	@Override
 	public void showMessage(String msg) {
-		clearDisplay();
 		System.out.println(msg);
 
 	}
 
 	@Override
 	public int getInteger(String msg) {
-		clearDisplay();
 		while(true){
 			try(Scanner sc = new Scanner(System.in)){
 				System.out.println(msg);
@@ -40,7 +38,6 @@ public class TUI implements IUI {
 
 	@Override
 	public String getString(String msg) {
-		clearDisplay();
 		while(true){
 			try(Scanner sc = new Scanner(System.in)){
 				System.out.println(msg);
@@ -54,7 +51,6 @@ public class TUI implements IUI {
 
 	@Override
 	public char[] getPassword(String msg) {
-		clearDisplay();
 		while(true){
 			try{
 				Console console = System.console();
