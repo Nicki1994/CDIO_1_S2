@@ -66,8 +66,8 @@ public class Func implements IFunc{
         List<String> tempList = new ArrayList<>();
         int tempInt = 0;
         while (tempInt != 5) {
+        	ui.showMessage("Nuværende roller:"+tempList.toString());
             tempInt = ui.getInteger("Hvilke roller skal denne bruger have?:\n1: Admin\n2: Pharmacist\n3: Foreman\n4: Operator\n5:Færdig med roller");
-            ui.showMessage("Nuværende roller:"+tempList.toString());
             switch (tempInt) {
                 case 1:
                     if (tempList.contains("Admin")) {
