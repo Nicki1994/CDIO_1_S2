@@ -142,6 +142,7 @@ public class Func implements IFunc{
         tempUser.setPassword(ui.getString("Indtast kode:\n"));
         tempUser.setCpr(ui.getInteger("Indtast CPR:\n"));
         tempUser.setRoles(getRoles());
+
     }
 
     private void deleteUser() {
