@@ -11,15 +11,15 @@ public class UserDTO implements Serializable{
 	private String userName;                
 	private String ini;                 
 	private List<String> roles;
-	private int cpr;
+	private long cpr;
 	private String password;
 	
 	public UserDTO() {
 		this.roles = new ArrayList<>();
 	}
 
-	public int getCpr(){return cpr;}
-	public void setCpr(int cpr){this.cpr=cpr;}
+	public long getCpr(){return cpr;}
+	public void setCpr(long cpr){this.cpr=cpr;}
 	public String getPassword(){return password;}
 	public void setPassword(String password){this.password=password;}
 

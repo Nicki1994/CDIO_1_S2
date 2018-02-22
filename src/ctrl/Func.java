@@ -131,12 +131,18 @@ public class Func implements IFunc{
 
     private void updateSpecificUser() {
         ui.clearDisplay();
-        //TODO
         try {
             data.getUser(ui.getInteger("Indtast bruger ID\n"));
         } catch(IUserDAO.DALException e) {
-            ui.showMessage("Forkert bruger ID");
+            ui.showMessage("Bruger findes ikke");
         }
+
+        UserDTO tempUser = new UserDTO();
+        tempUser.setUserName(ui.getString("Indtast navn:\n"));
+        tempUser.setPassword(ui.getString("Indtast kode:\n"));
+        tempUser.setCpr(ui.getInteger("Indtast CPR:\n"));
+        tempUser.setRoles(getRoles());
+
     }
 
     private void deleteUser() {
