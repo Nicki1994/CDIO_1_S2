@@ -10,11 +10,16 @@ import java.util.List;
 public class Func implements IFunc{
     IUserDAO data = new UserDAO();
     IUI ui = new TUI();
-    //TODO load users
+
 
 
     @Override
     public void start() {
+        try {
+            data.loadUsers();
+        } catch (IUserDAO.DALException e) {
+            e.printStackTrace();
+        }
         ui.clearDisplay();
         while(true){
             ui.showMessage("Velkommen til\n");
@@ -156,8 +161,12 @@ public class Func implements IFunc{
         }
     }
 
-    private void exit(){
-        //TODO save users
+    private void exit() {
+        try {
+            data.saveUsers();
+        } catch (IUserDAO.DALException e) {
+            e.printStackTrace();
+        }
         System.exit(0);
     }
 }

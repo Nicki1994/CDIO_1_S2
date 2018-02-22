@@ -8,6 +8,9 @@ public interface IUserDAO {
 	void createUser(UserDTO user) throws DALException;
 	void updateUser(UserDTO user) throws DALException;
 	void deleteUser(int userId) throws DALException;
+
+	void saveUsers() throws DALException;
+	List<UserDTO> loadUsers() throws DALException;
 	
 	public class DALException extends Exception {
 

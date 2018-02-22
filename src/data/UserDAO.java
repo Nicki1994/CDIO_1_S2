@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class UserDAO implements IUserDAO{
-    List<UserDTO> userList;
+    private List<UserDTO> userList;
     public static int userIDIt = 0;
     
     public UserDAO(){
@@ -82,18 +82,18 @@ public class UserDAO implements IUserDAO{
                 j = true;
             }
         }
-        if (j == false) {
+        if (!j) {
             throw new DALException("Fejl: Bruger ikke fundet!");
         }
     }
     
-    private void saveUsers(List<UserDTO> users) throws DALException {
+    public void saveUsers() throws DALException {
 		ObjectOutputStream oOS =null;
 		try {
 			String fileName = "userDTOs.txt";
 			FileOutputStream fOS = new FileOutputStream(fileName);
 			oOS = new ObjectOutputStream(fOS);
-			oOS.writeObject(users);
+			oOS.writeObject(userList);
 		} catch (FileNotFoundException e) {
 			throw new DALException("Error locating file", e);
 		} catch (IOException e) {
@@ -108,7 +108,7 @@ public class UserDAO implements IUserDAO{
 			}
 		}	
 	}
-    private List<UserDTO> loadUsers() throws DALException {
+    public List<UserDTO> loadUsers() throws DALException {
 		List<UserDTO> userStore = new ArrayList<UserDTO>();
 		ObjectInputStream oIS = null;
 		try {
@@ -136,6 +136,14 @@ public class UserDAO implements IUserDAO{
 				}
 			}
 		}
+
+		//iterating on uID counter
+        for (UserDTO u: userStore) {
+            if(u.getUserId() > userIDIt){
+                userIDIt = u.getUserId();
+            }
+        }
+        userList = userStore;
 		return userStore;
 	}
 
