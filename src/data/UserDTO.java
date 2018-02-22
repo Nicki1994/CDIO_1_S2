@@ -12,7 +12,7 @@ public class UserDTO implements Serializable{
 	private String ini;                 
 	private List<String> roles;
 	private int cpr;
-	private char[] password;
+	private String password;
 	
 	public UserDTO() {
 		this.roles = new ArrayList<>();
@@ -20,8 +20,8 @@ public class UserDTO implements Serializable{
 
 	public int getCpr(){return cpr;}
 	public void setCpr(int cpr){this.cpr=cpr;}
-	public char[] getPassword(){return password;}
-	public void setPassword(char[] password){this.password=password;}
+	public String getPassword(){return password;}
+	public void setPassword(String password){this.password=password;}
 
 	public int getUserId() {
 		return userId;

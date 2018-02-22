@@ -4,7 +4,6 @@ import UI.*;
 import data.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Func implements IFunc{
@@ -20,7 +19,7 @@ public class Func implements IFunc{
         } catch (IUserDAO.DALException e) {
             e.printStackTrace();
         }
-        ui.clearDisplay();
+        //ui.clearDisplay();
         while(true){
             ui.showMessage("Velkommen til\n");
             switch(ui.getInteger("1: Opret bruger\n2: Vis alle brugere\n3: Vis enkelt bruger\n4: Opdater bruger\n5: Slet bruger\n6: Afslut")) {
@@ -55,7 +54,7 @@ public class Func implements IFunc{
 
         ui.showMessage("Opret bruger:\n");
         tempUser.setUserName(ui.getString("Indtast navn:\n"));
-        tempUser.setPassword(ui.getPassword("Indtast kode:\n"));
+        tempUser.setPassword(ui.getString("Indtast kode:\n"));
         tempUser.setCpr(ui.getInteger("Indtast CPR:\n"));
         tempUser.setRoles(getRoles());
         tempUser.setUserId(++UserDAO.userIDIt);

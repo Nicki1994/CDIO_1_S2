@@ -116,8 +116,8 @@ public class UserDAO implements IUserDAO{
 			FileInputStream fIS = new FileInputStream(fileName);
 			oIS = new ObjectInputStream(fIS);
 			Object inObj = oIS.readObject();
-			if (inObj instanceof List){
-				userStore = (List) inObj;
+			if (inObj instanceof ArrayList){
+				userStore = (ArrayList) inObj;
 			} else {
 				throw new DALException("Wrong object in file");
 			}
