@@ -1,5 +1,3 @@
-package Data;
-
 package data;
 
 import java.io.Serializable;
@@ -13,12 +11,18 @@ public class UserDTO implements Serializable{
 	private String userName;                
 	private String ini;                 
 	private List<String> roles;
-	//TODO Add relevant fields
+	private long cpr;
+	private String password;
 	
 	public UserDTO() {
 		this.roles = new ArrayList<>();
 	}
-	
+
+	public long getCpr(){return cpr;}
+	public void setCpr(long cpr){this.cpr=cpr;}
+	public String getPassword(){return password;}
+	public void setPassword(String password){this.password=password;}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -30,6 +34,11 @@ public class UserDTO implements Serializable{
 	}
 	public void setUserName(String userName) {
 		this.userName = userName;
+		if (userName.length()>3){
+		String tempIni = (userName.substring(0,2)+userName.substring(userName.length()-2,userName.length())).toUpperCase();
+		setIni(tempIni);
+		}
+		else setIni(userName);
 	}
 	public String getIni() {
 		return ini;
@@ -59,8 +68,10 @@ public class UserDTO implements Serializable{
 
 	@Override
 	public String toString() {
-		return "UserDTO [userId=" + userId + ", userName=" + userName + ", ini=" + ini + ", roles=" + roles + "]";
+		return "UserDTO [userId=" + userId + ", userName=" + userName + "CPR=" + cpr + "Pass=" + password + ", ini=" + ini + ", roles=" + roles + "]";
 	}
+	
+	
 	
 	
 	
